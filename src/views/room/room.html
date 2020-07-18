@@ -1,0 +1,18 @@
+<template>
+  <h3>Room</h3>
+  <input if.bind="!roomId" type="text" value.bind="id" placeholder="Enter room id here" />
+  <button if.bind="!roomId" click.trigger="joinRoom(id)">Join</button>
+  <button if.bind="!roomId" click.trigger="setupRoom()">Create new Room</button>
+  <div if.bind="roomId">share id <span class="quote">${roomId}</span> to join room</div>
+  <div>
+  </div>
+  <div>
+    <h5>Peers</h5>
+    <div id="video-wrapper">
+      <video id="localVideo" autoplay playsinline></video>
+    </div>
+  </div>
+  <div class="warning">
+    ${error}
+  </div>
+</template>
