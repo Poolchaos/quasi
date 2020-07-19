@@ -169,14 +169,14 @@ export class Room {
   }
 
   disconnect() {
+    console.log(' ::>> disconnect >>>>>>>> ');
+    this.socket.emit('disconnected', null, () => {});
     if (this.peerConnection) {
       console.log(' ::>> closing conenction ', this.peerConnection);
       this.peerConnection.close();
       setTimeout(() => {
         this.peerConnection = null;
       }, 50);
-    } else {
-      this.socket.emit('disconnect', null, () => {});
     }
   }
 }

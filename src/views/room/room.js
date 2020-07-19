@@ -81,13 +81,7 @@ export class RoomVM {
 
       let wrapper = document.querySelector('#video-wrapper');
       let video = wrapper.querySelector('#video-' + peer.id);
-
-      
-      let videos = document.querySelectorAll('video');
-      let numberClass = 'vid-' + videos.length;
-      videos.forEach(el => {
-        el.className = 'video-box ' + numberClass;
-      });
+      const numberClass = this.setIds();
 
       if (video) {
         video.srcObject = peer.stream;
@@ -113,7 +107,21 @@ export class RoomVM {
       this.peers = this.peers.filter((p) => {
         return p.id !== peer.id;
       });
+      let el = document.querySelector('#video-' + peer.id);
+      if (el) {
+        el.parentElement.removeChild(el);
+      }
+      this.setIds();
     });
+  }
+
+  setIds() {
+    let videos = document.querySelectorAll('video');
+    let numberClass = 'vid-' + videos.length;
+    videos.forEach(el => {
+      el.className = 'video-box ' + numberClass;
+    });
+    return numberClass;
   }
 
   joinRoom(id) {
@@ -131,13 +139,21 @@ export class RoomVM {
   disconnect() {
     console.log('disconnect clicked');
     this.service.disconnect();
-    
     this.stopTracks();
   }
 
   end() {
+    this.peers.forEach(peer => {
+      let el = document.querySelector('#video-' + peer.id);
+      if (el) {
+        el.parentElement.removeChild(el);
+      }
+    });
+    this.peers = [];
     this.localStream = null;
     this.roomId = null;
+    this.setIds();
+    document.querySelector('#localVideo').setAttribute('opacity', '0');
     this.router.navigate('room');
   }
 }
