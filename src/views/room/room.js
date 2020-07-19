@@ -11,6 +11,7 @@ export class RoomVM {
   error;
   peers = [];
   localStream;
+  screenShare;
   roomId;
 
   constructor(router, eventAggregator, videoStream, service) {
@@ -155,5 +156,24 @@ export class RoomVM {
     this.setIds();
     document.querySelector('#localVideo').setAttribute('opacity', '0');
     this.router.navigate('room');
+  }
+
+  async shareScreen() {
+    console.log(' ::>> shareScreen >>>> ');
+    const stream = await navigator.mediaDevices.getDisplayMedia();
+    console.log(' ::>> screen stream = ', stream);
+    this.screenShare = stream;
+    this.service.switchStreams(stream);
+  }
+
+  stopScreenShare() {
+    console.log(' ::>> stopScreenShare >>>> ');
+    const localStram = this.localStream;
+    console.log('this.screenShare = ', this.screenShare);
+    this.screenShare.getTracks().forEach(function(track) {
+      track.stop();
+    });
+    this.screenShare = null;
+    this.service.switchStreams(localStram);
   }
 }

@@ -179,4 +179,23 @@ export class Room {
       }, 50);
     }
   }
+
+  switchStreams(stream) {
+    console.log(' shareScreen = ', this.peerConnections, stream);
+
+    for(var id in this.peerConnections) {
+      let pc = this.peerConnections[id];
+
+      console.log(' peerConnections = ', pc, pc.getSenders());
+      var sender = pc.getSenders().find(function(s) {
+        console.log(' sender = ', s.track.kind, ' - ', stream.kind);
+        return s.track.kind == 'video';
+      });
+      console.log('found sender:', sender, stream.getTracks());
+      let track = stream.getTracks().find(function(t) {
+        return t.kind == 'video';
+      });
+      sender.replaceTrack(track);
+    }
+  }
 }

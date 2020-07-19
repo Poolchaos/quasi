@@ -32,6 +32,10 @@
   <div class="footer" if.bind="roomId">
     Room Id <span class="quote" click.trigger="copy()">${roomId}</span>
   </div>
-  <div if.bind="localStream" class="actions" click.trigger="disconnect()"></div>
+  <div if.bind="localStream" class="actions">
+    <div class="disconnect-btn" click.trigger="disconnect()"></div>
+    <div if.bind="!screenShare" class="screen-share-btn" click.trigger="shareScreen()"></div>
+    <div if.bind="screenShare" class="stop-screen-share-btn" click.trigger="stopScreenShare()"></div>
+  </div>
   <input type="text" id="roomId" value.bind="roomId" style="opacity: 0;" />
 </template>

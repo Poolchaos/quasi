@@ -100,12 +100,31 @@ body {
 
 .actions {
   position: absolute;
-  background: URL('../static/cancel-phone-call-function-end-512.png');
-  width: 40px;
-  height: 40px;
-  background-size: contain;
   margin: auto;
 	top: 15px;
   right: 15px;
+}
+
+.disconnect-btn {
+  background: URL('../static/cancel-phone-call-function-end-512.png');
+  background-size: contain;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.screen-share-btn {
+  background: URL('../static/screen-share.png');
+  background-size: contain;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.stop-screen-share-btn {
+  background: URL('../static/stop-screen-share.png');
+  background-size: contain;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
 }
