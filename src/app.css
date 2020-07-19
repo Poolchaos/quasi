@@ -129,6 +129,33 @@ body {
   height: 40px;
 }
 
+.min-max-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: none;
+  background: URL('../static/min-max.png');
+  background-size: contain;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.video-box:hover .min-max-btn {
+  display: block;
+}
+
 video {
   width: 100%;
+}
+
+.max {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  width: 100%;
+  background: #000;
 }

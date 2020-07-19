@@ -97,7 +97,22 @@ export class RoomVM {
         videoEl.setAttribute('playsinline', '');
         videoEl.srcObject = peer.stream;
 
+        let minMax = document.createElement('div');
+        minMax.className = 'min-max-btn';
+        minMax.onclick = () => {
+          let _el = document.querySelector('#video-' + peer.id);
+          if (_el) {
+            let parent = _el.parentElement;
+            if (parent.className.indexOf(' max') >= 0) {
+              parent.className = parent.className.replace('max', '');
+            } else {
+              parent.className += ' max';
+            }
+          }
+        };
+
         wrap.appendChild(videoEl);
+        wrap.appendChild(minMax);
         wrapper.appendChild(wrap);
       }
 
