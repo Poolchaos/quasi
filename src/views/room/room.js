@@ -88,14 +88,17 @@ export class RoomVM {
         video.srcObject = peer.stream;
       } else {
 
+        let wrap = document.createElement('div');
+        wrap.setAttribute('class', 'video-box ' + numberClass);
+        
         let videoEl = document.createElement('video');
         videoEl.setAttribute('id', 'video-' + peer.id);
-        videoEl.setAttribute('class', 'video-box ' + numberClass);
         videoEl.setAttribute('autoplay', '');
         videoEl.setAttribute('playsinline', '');
         videoEl.srcObject = peer.stream;
 
-        wrapper.appendChild(videoEl);
+        wrap.appendChild(videoEl);
+        wrapper.appendChild(wrap);
       }
 
       this.peers.push({
@@ -110,15 +113,18 @@ export class RoomVM {
       });
       let el = document.querySelector('#video-' + peer.id);
       if (el) {
-        el.parentElement.removeChild(el);
+        let elToremove = el.parentElement;
+        if (elToremove) {
+          elToremove.parentElement.removeChild(elToremove);
+        }
       }
       this.setIds();
     });
   }
 
-  setIds() {
-    let videos = document.querySelectorAll('video');
-    let numberClass = 'vid-' + videos.length;
+  setIds(inc) {
+    let videos = document.querySelectorAll('.video-box');
+    let numberClass = 'vid-' + (inc ? videos.length + 1 : videos.length);
     videos.forEach(el => {
       el.className = 'video-box ' + numberClass;
     });
@@ -161,6 +167,7 @@ export class RoomVM {
   async shareScreen() {
     console.log(' ::>> shareScreen >>>> ');
     const stream = await navigator.mediaDevices.getDisplayMedia();
+    document.querySelector('#localVideo').srcObject = stream;
     console.log(' ::>> screen stream = ', stream);
     this.screenShare = stream;
     this.service.switchStreams(stream);
@@ -169,6 +176,7 @@ export class RoomVM {
   stopScreenShare() {
     console.log(' ::>> stopScreenShare >>>> ');
     const localStram = this.localStream;
+    document.querySelector('#localVideo').srcObject = localStram;
     console.log('this.screenShare = ', this.screenShare);
     this.screenShare.getTracks().forEach(function(track) {
       track.stop();
