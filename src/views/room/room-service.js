@@ -20,6 +20,7 @@ export class Room {
       }
     ]
   };
+  peerConnection;
   peerConnections = {};
   currentId;
   roomId;
@@ -93,6 +94,7 @@ export class Room {
       return this.peerConnections[id];
     }
     var pc = new RTCPeerConnection(this.iceConfig);
+    console.log(' getting pc ');
     this.peerConnections[id] = pc;
     pc.addStream(this.stream);
     pc.onicecandidate = (evnt) => {
@@ -111,6 +113,7 @@ export class Room {
   makeOffer(id) {
     console.log(' |||| make offer', id);
     var pc = this.getPeerConnection(id);
+    this.peerConnection = pc;
     pc.createOffer((sdp) => {
       pc.setLocalDescription(sdp);
       console.log('Creating an offer for', id);
@@ -163,5 +166,17 @@ export class Room {
         resolve(rooms);
       });
     });
+  }
+
+  disconnect() {
+    if (this.peerConnection) {
+      console.log(' ::>> closing conenction ', this.peerConnection);
+      this.peerConnection.close();
+      setTimeout(() => {
+        this.peerConnection = null;
+      }, 50);
+    } else {
+      this.socket.emit('disconnect', null, () => {});
+    }
   }
 }

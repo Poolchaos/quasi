@@ -25,32 +25,41 @@ body {
   margin-bottom: 20px;
 }
 
-.quote {
-  font-size: 15px;
-  color: brown;
-  padding: 3px 5px;
-  background: antiquewhite;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .video-box {
   position: relative;
   display: inline-block;
+}
+
+.vid-1 {
+  width: 100%;
+}
+
+.vid-2 {
   width: 50%;
 }
 
-.actions {
-  position: absolute;
-  background: URL('../static/cancel-phone-call-function-end-512.png');
-  width: 50px;
-  height: 50px;
-  background-size: contain;
-  margin: auto;
-	bottom: 15px;
-	left: 0;
-  right: 0;
-  cursor: pointer;
+.vid-3 {
+  width: 50%;
+}
+
+.vid-4 {
+  width: 50%;
+}
+
+.vid-5 {
+  width: 33%;
+}
+
+.vid-6 {
+  width: 33%;
+}
+
+.vid-7 {
+  width: 33%;
+}
+
+.vid-8 {
+  width: 33%;
 }
 
 .label {
@@ -69,4 +78,34 @@ body {
 .or-divider {
   margin: 10px auto;
   width: 30px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  padding: 10px;
+}
+
+.quote {
+  font-size: 15px;
+  color: #fff!important;
+  padding: 3px 5px;
+  background: #28a745!important;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actions {
+  position: absolute;
+  background: URL('../static/cancel-phone-call-function-end-512.png');
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  margin: auto;
+	top: 15px;
+  right: 15px;
+  cursor: pointer;
 }

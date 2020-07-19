@@ -9,7 +9,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Room Id</span>
           </div>
-          <input type="text" class="form-control" />
+          <input type="text" value.bind="id" class="form-control" />
           <button class="btn btn-primary" click.trigger="joinRoom(id)">Join</button>
         </div>
 
@@ -18,19 +18,20 @@
           <button class="btn btn-success " click.trigger="setupRoom()">Create new Room</button>
         </div>
       </div>
-
-      <div if.bind="roomId">share id <span class="quote" click.trigger="copy()">${roomId}</span> to join room</div>
-      <input type="text" id="roomId" value.bind="roomId" style="opacity: 0;" />
     </div>
   </div>
 
   <div id="video-wrapper" class="row">
-    <div class="video-box" style.bind="localStream ? '' : 'opacity: 0;'">
-      <div class="actions"></div>
-      <video class="box" id="localVideo" autoplay playsinline></video>
-    </div>
+    <video class="video-box" id="localVideo" autoplay playsinline style.bind="localStream ? '' : 'opacity: 0;'"></video>
   </div>
-  <div class="warning">
+  <div class="bg-danger">
     ${error}
   </div>
+
+  
+  <div class="footer" if.bind="roomId">
+    Room Id <span class="quote" click.trigger="copy()">${roomId}</span>
+  </div>
+  <div if.bind="localStream" class="actions" click.trigger="disconnect()"></div>
+  <input type="text" id="roomId" value.bind="roomId" style="opacity: 0;" />
 </template>

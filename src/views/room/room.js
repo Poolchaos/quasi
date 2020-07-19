@@ -49,6 +49,15 @@ export class RoomVM {
 
     this.videoStream.get().then((s) => {
       console.log(' ::>> got stream ', s);
+
+      this.stopTracks = () => {
+        s.getTracks().forEach(function(track) {
+          console.log(' ::>> track >>>> ', track);
+          track.stop();
+        });
+        this.end();
+      }
+
       this.localStream = s;
       document.querySelector('#localVideo').srcObject = s;
       this.service.init(s);
@@ -73,12 +82,20 @@ export class RoomVM {
       let wrapper = document.querySelector('#video-wrapper');
       let video = wrapper.querySelector('#video-' + peer.id);
 
+      
+      let videos = document.querySelectorAll('video');
+      let numberClass = 'vid-' + videos.length;
+      videos.forEach(el => {
+        el.className = 'video-box ' + numberClass;
+      });
+
       if (video) {
         video.srcObject = peer.stream;
       } else {
+
         let videoEl = document.createElement('video');
         videoEl.setAttribute('id', 'video-' + peer.id);
-        videoEl.setAttribute('class', 'box');
+        videoEl.setAttribute('class', 'video-box ' + numberClass);
         videoEl.setAttribute('autoplay', '');
         videoEl.setAttribute('playsinline', '');
         videoEl.srcObject = peer.stream;
@@ -109,5 +126,18 @@ export class RoomVM {
     copyText.select();
     copyText.setSelectionRange(0, 99999); /*For mobile devices*/
     document.execCommand("copy");
+  }
+
+  disconnect() {
+    console.log('disconnect clicked');
+    this.service.disconnect();
+    
+    this.stopTracks();
+  }
+
+  end() {
+    this.localStream = null;
+    this.roomId = null;
+    this.router.navigate('room');
   }
 }
