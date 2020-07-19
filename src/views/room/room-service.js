@@ -81,7 +81,7 @@ export class Room {
     });
     this.socket.on('peer.disconnected', (data) => {
       console.log(' ::>> peer disconnected ');
-      this.eventAggregator.publish('peer.disconnected', [data]);
+      this.eventAggregator.publish('peer.disconnected', data);
     });
     this.socket.on('msg', (data) => {
       this.handleMessage(data);

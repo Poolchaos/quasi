@@ -10,8 +10,7 @@ export class App {
     this.router = router;
     config.title = 'Aurelia';
     config.map([
-      { route: ['', 'home'],      name: 'home',         moduleId: PLATFORM.moduleName('views/home/home') },
-      { route: 'room/',           name: 'room-select',  moduleId: PLATFORM.moduleName('views/room/room'),   title: 'Select Room' },
+      { route: ['', 'room/'],     name: 'room-select',  moduleId: PLATFORM.moduleName('views/room/room'),   title: 'Select Room' },
       { route: 'room/:id',        name: 'room',         moduleId: PLATFORM.moduleName('views/room/room'),   title: 'Room' }
     ]);
   }

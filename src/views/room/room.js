@@ -49,23 +49,23 @@ export class RoomVM {
 
     this.videoStream.get().then((s) => {
       console.log(' ::>> got stream ', s);
-        this.localStream = s;
-        document.querySelector('#localVideo').srcObject = s;
-        this.service.init(s);
+      this.localStream = s;
+      document.querySelector('#localVideo').srcObject = s;
+      this.service.init(s);
 
-        if (!this.roomId) {
-          console.log(' ::>> service = ', { service: this.service });
-          this.service.createRoom()
-            .then((_roomId) => {
-              this.router.navigate('room/' + _roomId);
-            });
-        } else {
-          this.service.joinRoom(this.roomId);
-        }
-      }).catch((e) => {
-        this.error = 'No audio/video permissions. Please refresh your browser and allow the audio/video capturing.';
-        console.error(e);
-      });
+      if (!this.roomId) {
+        console.log(' ::>> service = ', { service: this.service });
+        this.service.createRoom()
+          .then((_roomId) => {
+            this.router.navigate('room/' + _roomId);
+          });
+      } else {
+        this.service.joinRoom(this.roomId);
+      }
+    }).catch((e) => {
+      this.error = 'No audio/video permissions. Please refresh your browser and allow the audio/video capturing.';
+      console.error(e);
+    });
 
     this.eventAggregator.subscribe('peer.stream', (peer) => {
       console.log('Client connected, adding new stream', peer);
@@ -78,6 +78,7 @@ export class RoomVM {
       } else {
         let videoEl = document.createElement('video');
         videoEl.setAttribute('id', 'video-' + peer.id);
+        videoEl.setAttribute('class', 'box');
         videoEl.setAttribute('autoplay', '');
         videoEl.setAttribute('playsinline', '');
         videoEl.srcObject = peer.stream;
@@ -100,5 +101,13 @@ export class RoomVM {
 
   joinRoom(id) {
     this.router.navigate('room/' + id);
+  }
+
+  copy() {
+    var copyText = document.getElementById("roomId");
+  
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+    document.execCommand("copy");
   }
 }

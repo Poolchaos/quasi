@@ -1,7 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #400D12!important;
+  font-family: arial, courier, helvetica;
+}
+
+.room-intro {
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  width: 400px;
+  height: 200px;
+  margin: auto;
+  padding: 10px;
+  background: #fff;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+.room-intro h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .quote {
   font-size: 15px;
   color: brown;
   padding: 3px 5px;
   background: antiquewhite;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.video-box {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+}
+
+.actions {
+  position: absolute;
+  background: URL('../static/cancel-phone-call-function-end-512.png');
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  margin: auto;
+	bottom: 15px;
+	left: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+}
+
+.box {
+  width: 100%;
+}
+
+.join input {
+  width: 60%;
+}
+
+.or-divider {
+  margin: 10px auto;
+  width: 30px;
 }

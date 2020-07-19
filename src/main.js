@@ -4,7 +4,9 @@ import 'regenerator-runtime/runtime';
 import * as environment from '../config/environment.json';
 import {PLATFORM} from 'aurelia-pal';
 
-import './app.css'
+import './app.css';
+import './flexboxgrid.css';
+import './bootstrap.min.css';
 
 export function configure(aurelia) {
   aurelia.use
