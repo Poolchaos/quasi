@@ -1,8 +1,11 @@
 # `quasi`
 
-This project is bootstrapped by [aurelia-cli](https://github.com/aurelia/cli).
+### This is a WebRTC video conference app
 
-For more information, go to https://aurelia.io/docs/cli/webpack
+```
+Server for this app can be found here:
+- https://github.com/Poolchaos/quasi-be
+```
 
 ## Run dev app
 
