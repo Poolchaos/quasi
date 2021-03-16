@@ -3,7 +3,7 @@
 ### This is a WebRTC video conference POC
 
 ```
-This app requires the following to run:
+This app requires the following serverless app to run:
 - [Quasi Server](https://github.com/Poolchaos/quasi-be)
 ```
 
