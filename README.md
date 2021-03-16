@@ -1,6 +1,6 @@
 # `quasi`
 
-### This is a WebRTC video conference app
+### This is a WebRTC video conference POC
 
 ```
 Server for this app can be found here:
