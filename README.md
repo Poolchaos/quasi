@@ -3,8 +3,8 @@
 ### This is a WebRTC video conference POC
 
 ```
-Server for this app can be found here:
-- https://github.com/Poolchaos/quasi-be
+This app requires the following to run:
+- [Quasi Server](https://github.com/Poolchaos/quasi-be)
 ```
 
 ## Run dev app
